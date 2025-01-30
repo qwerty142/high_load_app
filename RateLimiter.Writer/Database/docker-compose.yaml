@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: writer-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: team15
+      MONGO_INITDB_ROOT_PASSWORD: team15
+      MONGO_INITDB_DATABASE: writerdb
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./Migrations/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      

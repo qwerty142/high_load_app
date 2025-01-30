@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option csharp_namespace = "UserService.Models.Api";
+
+package userService;
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserById (GetUserByIdRequest) returns (UserResponse);
+  rpc GetUserByName (GetUserByNameRequest) returns (ListOfUsersResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (EmptyResponse);
+  rpc DeleteUser (DeleteUserByIdRequest) returns (EmptyResponse);
+}
+
+message CreateUserRequest {
+  string login = 1;
+  string password = 2;
+  string name = 3;
+  string surname = 4;
+  int32 age = 5;
+}
+
+message CreateUserResponse {
+  int32 id = 1;
+}
+
+message GetUserByIdRequest {
+  int32 id = 1;
+}
+
+message GetUserByNameRequest {
+  string name = 1;
+  string surname = 2;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  string login = 2;
+  string password = 3;
+  string name = 4;
+  string surname = 5;
+  int32 age = 6;
+}
+
+message DeleteUserByIdRequest {
+  int32 id = 1;
+}
+
+message UserResponse {
+  UserMessage user = 1;
+}
+
+message ListOfUsersResponse {
+  repeated UserMessage user = 1;
+}
+
+message UserMessage {
+  int32 id = 1;
+  string login = 2;
+  string password = 3;
+  string name = 4;
+  string surname = 5;
+  int32 age = 6;
+}
+
+message EmptyResponse { }

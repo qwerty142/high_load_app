@@ -1,0 +1,14 @@
+﻿version: '3.9'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: is-highload-y26
+    environment:
+      POSTGRES_USER: team15
+      POSTGRES_PASSWORD: team15
+      POSTGRES_DB: highload
+    ports:
+      - '6432:5432'
+    volumes:
+      - ./Migration:/docker-entrypoint-initdb.d

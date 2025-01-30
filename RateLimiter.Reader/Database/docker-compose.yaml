@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: ratelimits
+    command: mongod --replSet replicaSet1
+    environment:
+#      MONGO_INITDB_ROOT_USERNAME: team15
+#      MONGO_INITDB_ROOT_PASSWORD: team15
+      MONGO_INITDB_DATABASE: ratelimitsdb
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./Migrations/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  redis:
+    image: redis:latest
+    container_name: redis
+    environment:
+      - REDIS_PASSWORD=team15
+    ports:
+      - "6379:6379"
+    

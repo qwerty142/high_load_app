@@ -1,0 +1,1 @@
+﻿CREATE INDEX ix_name_surname ON users (user_name, user_surname);
